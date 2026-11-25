@@ -1,20 +1,18 @@
 #!/usr/bin/env python3
-"""Weirdest Job Title: Blind Judge Showdown (make.fun).
+"""Weirdest Job Title: Blind Judge Showdown — a make.fun one-line entry."""
+from pathlib import Path
 
-Writes the entry -- one job title, 60 characters at most, the weirdest
-one imaginable -- to /output/entry.txt, where the sealed scorer reads it.
-"""
+ENTRY = "Senior Apologizer for AI-Generated Meeting Notes"
 
-import os
-
-TEXT = 'Senior Manager of Apologising to Geese'
+OUTPUT = Path("/output/entry.txt")
 
 
-def main():
-    os.makedirs("/output", exist_ok=True)
-    with open("/output/entry.txt", "w", encoding="utf-8") as f:
-        f.write(TEXT)
+def write_entry() -> None:
+    text = ENTRY.strip()
+    assert text, "entry must not be blank"
+    OUTPUT.parent.mkdir(parents=True, exist_ok=True)
+    OUTPUT.write_text(text, encoding="utf-8")
 
 
 if __name__ == "__main__":
-    main()
+    write_entry()
